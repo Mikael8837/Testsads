@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>tutorial</title>
+</head>
+<body style="background-color:blue">
+
+<header class="cb">
+<img src="Settings.png"class="settings"id="settings"onclick="setconfigs(1)">
+<div class="coinbk"id="coinbk">
+<div class="cointxt"><h3 id="coins">0</h3></div>
+<img src="coin.png"class="coin">
+<img src="Add.png"class="add">
+
+</header>
+
+<div class="gamenotify"></div>
+<h2 class="jog"id="jog">JOGADAS: 8</h2>
+<img src="Gato1.png"id="miss1"class="miss1">
+<h3 class="miss1txt"id="miss1txt">7</h3>
+<img src="galo.png"id="miss2"class="miss2">
+<h3 class="miss2txt"id="miss2txt">3</h3>
+<img src="cachorro.png"id="miss3"class="miss3">
+<h3 class="miss3txt"id="miss3txt">2</h3>
+
+<div class="game"></div>
+<div id="pos1" class="pos" onclick="game(1,1)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos2" class="pos"onclick="game(2,2)"><img src="Galo.png"style="width:80px;height:80px"></div>
+<div id="pos3" class="pos" onclick="game(3,3)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos4" class="pos"onclick="game(3,3)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos5" class="pos"onclick="game(5,5)"><img src="Galo.png"style="width:80px;height:80px"></div>
+<div id="pos6" class="pos"onclick="game(6,6)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos7" class="pos"onclick="game(7,7)"><img src="Cachorro.png"style="width:80px;height:80px"></div>
+<div id="pos8" class="pos"onclick="game(7,7)"><img src="Cachorro.png"style="width:80px;height:80px"></div>
+<div id="pos9" class="pos"onclick="game(9,9)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos10" class="pos"onclick="game(10,10)"><img src="Galo.png"style="width:80px;height:80px"></div>
+<div id="pos11" class="pos"onclick="game(11,11)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos12" class="pos"onclick="game(12,12)"><img src="Galo.png"style="width:80px;height:80px"></div>
+<div id="pos13" class="pos"onclick="game(13,13)"><img src="Cachorro.png"style="width:80px;height:80px"></div>
+<div id="pos14" class="pos"onclick="game(14,14)"><img src="Urso.png"style="width:80px;height:80px"></div>
+<div id="pos15" class="pos"onclick="game(11,11)"><img src="Gato1.png"style="width:80px;height:80px"></div>
+<div id="pos16" class="pos"onclick="game(16,16)"><img src="Urso.png"style="width:80px;height:80px"></div>
+<div class="container">
+<div class="match" id="match1"></div>
+<div class="match" id="match2"></div>
+<div class="match" id="match3"></div>
+<div class="match" id="match4"></div>
+<div class="match" id="match5"></div>
+</div>
+<img src="shoot.png"class="shoot1"id="shoot1">
+<img src="shoot.png"class="shoot2"id="shoot2">
+<img src="shoot.png"class="shoot3"id="shoot3">
+<img src="shoot.png"class="shoot4"id="shoot4">
+<h2 class="matchwin"id="matchwin">BICHO CRUSH</h2>
+<div class="earnpanel"id="earnpanel">
+<h2 class="txtpanel"id="txtpanel"style="margin-top:20px">parabens pegue sua recompemsa</h2>
+<img src="Ganhe.png"style="width:150px;height:150px">
+<button class="ganhar"id="ganhar"onclick="txtganhar()">receber dobro</button>
+<h3 class="txtganho"id="txtganho">+1500</h3>
+</div>
+<img src="Load.gif"class="load"id="load">
+</div>
+<img src="Bomb.png" id="bomblog" class="bomblog">
+<img src="Bomb.png"id="bomb" class="bomb" onclick="game(0,0,true)">
+<img src="Add2.png"class="add2"id="add2">
+<h3 id="bombtxt" class="bombtxt">1</h3>
+<div id="passpos"onclick="game(0,0,false,true)"></div>
+<img src="Boom.png"class="boom"id="boom">
+<div class="config"id="config">
+<img src="Close.png"id="closes"class="closes">
+<img src="Music.png"class="musics">
+<img src="Sound.png"class="sounds">
+
+<img src="On.png"class="on"id="on">
+<img src="On.png"class="on2"id="on2">
+<img src="Off.png"class="off"id="off">
+<img src="Off.png"class="off2"id="off2">
+</div>
+<div id="next"class="next">
+<h2>COMECAR DE NOVO</h2>
+
+<style>
+.load{
+position:fixed;top:200px;
+left:70px;
+visibility:hidden;
+}
+
+.txtganho{
+color:yellow;margin-top:-60px;
+margin-left:170px;
+background-color:pink;
+width:80px;
+
+}
+.ganhar{
+width:200px;height:40px;
+border-radius:20%;
+background-color:yellow;
+color:blue;
+font-family:Times New Roman;
+margin-top:40px;
+cursor:pointer;
+}
+.earnpanel{
+width:300px;height:300px;background-color:white;box-shadow:inset -5px -5px 10px black;
+border-radius:20%;
+position:fixed;top:200px;
+left:50px;
+text-align:center;
+transition:transform 1s linear;
+transform:scale(0);
+}
+.coinbk{
+width:150px;height:50px;position:fixed;top:23px;
+background-color:black;
+left:50px;
+}
+.shoot1{
+width:100px;height:100px;position:absolute;top:250px;
+left:150px;
+visibility:hidden;
+}
+.shoot2{
+width:100px;height:100px;position:absolute;top:250px;
+left:150px;
+visibility:hidden;
+}
+.shoot3{
+width:100px;height:100px;position:absolute;top:250px;
+left:150px;
+visibility:hidden;
+}
+.shoot4{
+width:100px;height:100px;position:absolute;top:250px;
+left:150px;
+visibility:hidden;
+}
+.addshoot1{
+animation:shoot1anim 1s linear;animation-fill-mode:forwards;
+}
+.addshoot2{
+animation:shoot2anim 1s linear;animation-fill-mode:forwards;
+}
+.addshoot3{
+animation:shoot3anim 1s linear;animation-fill-mode:forwards;
+}
+.addshoot4{
+animation:shoot4anim 1s linear;animation-fill-mode:forwards;
+}
+@keyframes shoot1anim{
+0%{
+top:250px;left:150px;
+}
+100%{
+top:490px;left:280px;
+}
+}
+@keyframes shoot2anim{
+0%{
+top:250px;left:150px;
+}
+100%{
+top:490px;left:40px;
+}
+}
+@keyframes shoot3anim{
+0%{
+top:250px;left:150px;
+}
+100%{
+top:490px;left:120px;
+}
+}
+@keyframes shoot4anim{
+0%{
+top:250px;left:150px;
+}
+100%{
+top:400px;left:280px;
+}
+}
+.matchwin{
+position:fixed;top:250px;
+color:green;
+text-shadow:5px 2px 2px black;
+left:50px;
+font-size:40px;
+transform:scale(0);
+transition:transform 1s linear;
+}
+.miss1txt{
+position:fixed;top:70px;color:white;
+font-size:25px;
+left:40px;
+}
+.miss2txt{
+position:fixed;top:70px;color:white;
+font-size:25px;
+left:90px;
+}
+.miss3txt{
+position:fixed;top:70px;color:white;
+font-size:25px;
+left:140px;
+}
+.miss1{
+width:50px;height:50px;position:fixed;top:100px;left:10px;
+}
+.miss2{
+width:50px;height:50px;position:fixed;top:100px;left:60px;
+}
+.miss3{
+width:50px;height:50px;position:fixed;top:100px;left:110px;
+}
+.jog{
+position:fixed;top:150px;
+left:50px;
+}
+.next{
+visibility:hidden;
+text-align:center;
+width:300px;height:70px;
+background-color:white;border-radius:20%;
+box-shadow:inset 2px 5px 10px black;
+position:fixed;top:350px;
+left:50px;
+}
+.off2{
+width:150px;height:80px;position:fixed;top:400px;
+left:200px;
+visibility:hidden;
+}
+.off{
+width:150px;height:80px;position:fixed;top:250px;
+left:200px;
+visibility:hidden;
+}
+.on2{
+width:150px;height:80px;position:relative;top:100px;
+left:15px;
+}
+.on{
+width:150px;height:80px;position:relative;top:-70px;
+left:170px;
+}
+.closes{
+width:70px;height:70px;position:relative;top:-101px;
+left:300px;
+
+}
+.musics{
+width:100px;height:100px;position:relative;top:25px;
+left:-50px;
+}
+.sounds{
+width:100px;height:100px;position:relative;top:200px;
+left:-155px;
+}
+.config{
+position:fixed;width:350px;height:350px;
+top:200px;
+background-color:orange;
+box-shadow:inset 2px 5px 10px black;
+border-radius:20%;
+left:30px;
+visibility:hidden;
+}
+.boom{
+width:40px;height:40px;position:absolute;
+top:350px;
+left:180px;
+opacity:0;
+transition:transform 0.5s linear;
+}
+.addexplo{
+animation:explo 0.5s linear;
+}
+@keyframes explo{
+50%{
+opacity:100;
+transform:scale(12);
+}
+100%{
+opacity:0;
+}
+}
+#passpos{
+width:250px;height:250px;background-color:white;
+position:fixed;
+top:250px;
+left:80px;
+opacity:0;
+visibility:hidden;
+}
+.bombtxt{
+position:fixed;top:600px;
+color:white;
+left:50px;
+font-size:30px;
+background-color:blue;
+border-radius:100%;
+}
+.add2{
+width:50px;height:50px;
+position:fixed;top:650px;left:110px;
+}
+.bomb{
+width:70px;
+height:70px;
+position:absolute;
+top:630px;
+left:50px;
+ 
+}
+.bomblog{
+width:70px;
+height:70px;
+position:absolute;
+top:630px;
+left:50px;
+transition:transform 0.2s linear;
+}
+.match{
+width:50px;height:50px;
+}
+#match1{
+background-color:none;
+position:fixed;top:645px;
+left:50px;
+}
+#match2{
+background-color:none;
+position:fixed;top:645px;
+left:110px;
+}
+#match3{
+background-color:none;
+position:fixed;top:645px;
+left:170px;
+}
+#match4{
+background-color:none;
+position:fixed;top:645px;
+left:230px;
+}
+#match5{
+background-color:none;
+position:fixed;top:645px;
+left:290px;
+}
+.container{
+width:390px;height:100px;position:fixed;top:620px;
+background-color:gray;
+border-radius:20%;
+box-shadow:inset 2px 2px 15px black;
+}
+
+.corestxt{
+color:white;
+font-size:20px;
+position:fixed;
+top:90px;
+left:20px;
+text-shadow:2px 2px 5px black;
+}
+
+.gamenotify{
+box-shadow:inset -5px -2px 7px black;
+text-align:center;
+width:240px;height:60px;
+position:fixed;
+top:95px;
+border-radius:10%;
+left:0px;
+background-color:blue;
+
+}
+
+.pos{
+width:70px;height:70px;
+position:fixed;
+
+
+
+}
+
+
+.pos:hover{
+background-color:white;
+}
+#pos1{top:230px;left:50px;transition:transform 0.5s linear;}
+#pos2{top:230px;left:130px;transition:transform 0.5s linear;}
+#pos3{top:230px;left:210px;transition:transform 0.5s linear;}
+#pos4{top:230px;left:290px;transition:transform 0.5s linear;}
+#pos5{top:320px;left:50px;transition:transform 0.5s linear;}
+#pos6{top:320px;left:130px;transition:transform 0.5s linear;}
+#pos7{top:320px;left:210px;transition:transform 0.5s linear;}
+#pos8{top:320px;left:290px;transition:transform 0.5s linear;}
+#pos9{top:410px;left:50px;transition:transform 0.5s linear;}
+#pos10{top:410px;left:130px;transition:transform 0.5s linear;}
+#pos11{top:410px;left:210px;transition:transform 0.5s linear;}
+#pos12{top:410px;left:290px;transition:transform 0.5s linear;}
+#pos13{top:500px;left:50px;transition:transform 0.5s linear;}
+#pos14{top:500px;left:130px;transition:transform 0.5s linear;}
+#pos15{top:500px;left:210px;transition:transform 0.5s linear;}
+#pos16{top:500px;left:290px;transition:transform 0.5s linear;}
+.addpos3{
+animation:pos3anim 0.5s; animation-fill-mode:forwards;
+}
+@keyframes pos3anim{
+0%{
+top:230px;
+}
+100%{
+top:320px;
+}
+}
+body{
+background:url('Bk.jpg');
+}
+.game{
+width:390px;height:400px;
+
+position:fixed;top:200px;
+left:1%;
+
+
+}
+.add{
+width:50px;height:50px;
+position:fixed;
+left:200px;top:22px;
+
+cursor:pointer;
+}
+@keyframes scales{
+0%{transform:scale(1.1)}
+50%{transform:scale(0.9)}
+100%{transform:scale(1.1)}
+}
+.coin{
+width:100px;height:100px;
+position:fixed;
+left:0px;
+top:0px;
+}
+.cointxt{
+width:180px;height:50px;
+position:fixed;
+top:23px;left:25px;
+
+
+
+border-radius:20%;
+font-size:20px;
+text-align:center;
+color:white;
+}
+#coins{
+margin-top:10px;
+}
+.settings{
+width:70px;height:70px;
+position:fixed;
+top:10px;left:310px;
+}
+.settings:hover{
+transform:scale(0.8);
+}
+.cb{
+
+height:100px;width:100%;
+z-index:999;
+position:fixed;
+top:0;left:0;
+background-color:blue;
+box-shadow:inset -5px 5px 10px black;
+}
+</style>
+
+<script>
+var panel=document.getElementById("earnpanel");
+var shoot1=document.getElementById("shoot1");
+var shoot2=document.getElementById("shoot2");
+var shoot3=document.getElementById("shoot3");
+var shoot4=document.getElementById("shoot4");
+var match12true=true;
+var match13true=true;
+var match14true=true;
+var match16true=true;
+var matchwin=document.getElementById("matchwin");
+var chicken;
+var dog;
+var gat;
+var urso;
+var miss1txt=document.getElementById("miss1txt");
+var miss2txt=document.getElementById("miss2txt");
+var miss3txt=document.getElementById("miss3txt");
+var bombtxt=document.getElementById("bombtxt");
+var numbomb=1;
+var boom=document.getElementById("boom");
+var pos1=document.getElementById("pos1");
+var pos2=document.getElementById("pos2");
+var pos3=document.getElementById("pos3");
+var pos4=document.getElementById("pos4");
+var pos5=document.getElementById("pos5");
+var pos6=document.getElementById("pos6");
+var pos7=document.getElementById("pos7");
+var pos8=document.getElementById("pos8");
+var pos9=document.getElementById("pos9");
+var pos10=document.getElementById("pos10");
+var pos11=document.getElementById("pos11");
+var pos12=document.getElementById("pos12");
+var pos13=document.getElementById("pos13");
+var pos14=document.getElementById("pos14");
+var pos15=document.getElementById("pos15");
+var pos16=document.getElementById("pos16");
+var next=document.getElementById("next");
+var on=document.getElementById("on");
+var off=document.getElementById("off");
+var config=document.getElementById("config");
+closes=document.getElementById("closes");
+settings=document.getElementById("settings");
+closes.addEventListener("click",function(){
+config.style.visibility="hidden";
+})
+function setconfigs(num){
+if(num==1){
+config.style.visibility="visible";
+setTimeout(()=>{
+config.style.transform="scale(1)";
+},200)
+}
+if(num==0){
+config.style.transform="scale(0)";
+setTimeout(()=>{
+config.style.visibility="hidden";
+},200)
+}
+}
+function musicaenabled(atual=true){
+if(atual==true){
+on.style.visibility="none";
+off.style.visibility="none";
+}
+else{
+on.style.visibility="hidden";
+off.style.visibility="hidden";
+}
+}
+game();
+var ismatch=false;
+var ativado=1;
+var matches=0;
+var cointxt=document.getElementById("coins");
+var jogtxt=document.getElementById("jog");
+var atualmatch1=0;
+var atualmatch2=0;
+var atualmatch3=0;
+var atualmatch4=0;
+var atualmatch5=0;
+var atualmatch6=0;
+var atualmatch7=0;
+var atualmatch8=0;
+var atualmatch9=0;
+var atualmatch10=0;
+var atualmatch11=0;
+var atualmatch12=0;
+var atualmatch13=0;
+var atualmatch14=0;
+var atualmatch15=0;
+var atualmatch16=0;
+function game(atualpos=0,tick=0,finish=false,ismatch=false){
+if(matches<0){
+matches=0;
+}
+if(finish==true){
+setTimeout(()=>{
+bombtxt.innerHTML="0";
+passpos.style.visibility="visible";
+},500)
+}
+if(ismatch==true&&numbomb>0){
+if(boom.className!="addexplo"){
+boom.classList.add("addexplo");
+ismatch=true;
+
+}
+pos1.style.transform="scale(0)";
+ pos2.style.transform="scale(0)";
+ pos3.style.transform="scale(0)";
+ pos4.style.transform="scale(0)";
+ pos5.style.transform="scale(0)";
+ pos6.style.transform="scale(0)";
+ pos7.style.transform="scale(0)";
+ pos8.style.transform="scale(0)";
+ pos9.style.transform="scale(0)";
+ pos10.style.transform="scale(0)";
+ pos11.style.transform="scale(0)";
+ pos12.style.transform="scale(0)";
+ pos13.style.transform="scale(0)";
+ pos14.style.transform="scale(0)";
+ pos15.style.transform="scale(0)";
+ pos16.style.transform="scale(0)";
+ numbomb--;
+ gat=7;
+ urso=2;
+ chicken=3;
+ dog=2;
+ match12true=true;
+ match14true=true;
+ match16true=true;
+ match13true=true;
+ passpos.style.visibility="hidden";
+ setTimeout(()=>{
+ panel.style.transform="scale(1)";
+ },1000)
+}
+
+
+
+if(matches>9){
+next.style.visibility="visible";
+jogtxt.innerHTML="Jogadas: 0";
+}
+if(matches==0){
+jogtxt.innerHTML="Jogadas: 8";
+}
+if(matches==1){
+jogtxt.innerHTML="Jogadas: 7";
+}
+if(matches==2){
+jogtxt.innerHTML="Jogadas: 6";
+}
+if(matches==3){
+jogtxt.innerHTML="Jogadas: 5";
+}
+if(matches==4){
+jogtxt.innerHTML="Jogadas: 4";
+}
+if(matches==5){
+jogtxt.innerHTML="Jogadas: 3";
+}
+if(matches==6){
+jogtxt.innerHTML="Jogadas: 2";
+}
+if(matches==7){
+jogtxt.innerHTML="Jogadas: 1";
+}
+if(matches>=8&&matches<9){
+jogtxt.innerHTML="Jogadas: 0";
+}
+if(matches>9){
+jogtxt.innerHTML="Jogadas: 0";
+}
+var biblioteca=[1,2,3,4];
+var qtde=biblioteca.length-1;
+var pos=1;
+next.addEventListener("click",function(){
+setTimeout(()=>{
+pos1.classList.remove("addpos3");
+pos2.classList.remove("addpos3");
+pos3.classList.remove("addpos3");
+pos4.classList.remove("addpos3");
+atualmatch1=0;
+ atualmatch2=0;
+ atualmatch3=0;
+ atualmatch4=0;
+ atualmatch5=0;
+ atualmatch6=0;
+ atualmatch7=0;
+ atualmatch8=0;
+ atualmatch9=0;
+ atualmatch10=0;
+ atualmatch11=0;
+ atualmatch12=0;
+ atualmatch13=0;
+ atualmatch14=0;
+ atualmatch15=0;
+ atualmatch16=0;
+ tick=0;
+ matches=0;
+ pos1.style.transform="scale(1)";
+ pos2.style.transform="scale(1)";
+ pos3.style.transform="scale(1)";
+ pos4.style.transform="scale(1)";
+ pos5.style.transform="scale(1)";
+ pos6.style.transform="scale(1)";
+ pos7.style.transform="scale(1)";
+ pos8.style.transform="scale(1)";
+ pos9.style.transform="scale(1)";
+ pos10.style.transform="scale(1)";
+ pos11.style.transform="scale(1)";
+ pos12.style.transform="scale(1)";
+ pos13.style.transform="scale(1)";
+ pos14.style.transform="scale(1)";
+ pos15.style.transform="scale(1)";
+ pos16.style.transform="scale(1)";
+ 
+ next.style.visibility="hidden";
+pos=Math.round(Math.random()*qtde);
+},2000)
+})
+
+if(tick==1){
+gat++;
+matches++;
+pos1.style.transform="scale(0)";
+pos1.style.transition="transform 0.2s linear";
+
+}
+if(tick==1&&atualmatch5==1||tick==1&&atualmatch6==1){
+matches++;
+gat=7;
+miss1txt.innerHTML="0";
+pos1.style.transform="scale(0)";
+pos1.style.transition="transform 0.2s linear";
+pos9.style.transform="scale(0)";
+pos9.style.transition="transform 0.2s linear";
+}
+if(tick==9&&atualmatch5==1||tick==9&&atualmatch6==1){
+matches++;
+gat=7;
+miss1txt.innerHTML="0";
+pos1.style.transform="scale(0)";
+pos1.style.transition="transform 0.2s linear";
+pos9.style.transform="scale(0)";
+pos9.style.transition="transform 0.2s linear";
+}
+
+if(tick==2){
+miss2txt.innerHTML--;
+gat++;
+matches++;
+atualpos=2;
+pos2.style.transform="scale(0)";
+pos2.style.transition="transform 0.2s linear";
+}
+
+
+if(tick==5){
+atualmatch5=1;
+chicken++;
+miss2txt.innerHTML--;
+matches++;
+pos5.style.transform="scale(0)";
+pos5.style.transition="transform 0.2s linear";
+}
+
+if(tick==2&&atualmatch6==1){
+matches++;
+chicken=3;
+miss2txt.innerHTML="0";
+pos6.style.transform="scale(0)";
+pos6.style.transition="transform 0.2s linear";
+pos5.style.transform="scale(0)";
+pos5.style.transition="transform 0.2s linear";
+pos10.style.transform="scale(0)";
+pos10.style.transition="transform 0.2s linear";
+if(pos1.className!="addpos3"){
+pos1.classList.add("addpos3");
+}
+}
+if(tick==5&&atualmatch6==1){
+atualmatch5=1;
+chicken=3;
+matches++;
+pos2.style.transform="scale(0)";
+pos2.style.transition="transform 0.2s linear";
+pos5.style.transform="scale(0)";
+pos5.style.transition="transform 0.2s linear";
+pos10.style.transform="scale(0)";
+pos10.style.transition="transform 0.2s linear";
+if(pos1.className!="addpos3"){
+pos1.classList.add("addpos3");
+}
+}
+if(tick==6&&atualmatch7!=1){
+atualmatch6=1;
+gat++;
+matches++;
+pos6.style.transform="scale(0)";
+pos6.style.transition="transform 0.2s linear";
+if(pos2.className!="addpos3"){
+pos2.classList.add("addpos3");
+}
+}
+if(tick==6&&atualmatch7==1&&atualmatch3!=1&&atualmatch4!=1){
+atualmatch6=1;
+gat=5;
+matches++;
+miss1txt.innerHTML="2";
+if(pos2.className!="addpos3"){
+pos2.classList.add("addpos3");
+}
+pos6.style.transform="scale(0)";
+pos6.style.transition="transform 0.2s linear";
+pos3.style.transform="scale(0)";
+pos3.style.transition="transform 0.2s linear";
+pos4.style.transform="scale(0)";
+pos4.style.transition="transform 0.2s linear";
+pos11.style.transform="scale(0)";
+pos11.style.transition="transform 0.2s linear";
+pos15.style.transform="scale(0)";
+pos15.style.transition="transform 0.2s linear";
+}
+
+if(tick==9){
+gat++;
+matches++;
+pos9.style.transform="scale(0)";
+pos9.style.transition="transform 0.2s linear";
+}
+
+if(tick==10){
+matches++;
+chicken++;
+miss2txt.innerHTML--;
+pos10.style.transform="scale(0)";
+pos10.style.transition="transform 0.2s linear";
+}
+if(tick==13){
+dog++;
+matches++;
+pos13.style.transform="scale(0)";
+pos13.style.transition="transform 0.2s linear";
+}
+if(tick==14){
+urso++;
+matches++;
+pos14.style.transform="scale(0)";
+pos14.style.transition="transform 0.2s linear";
+}
+if(tick==3||tick==4){
+matches++;
+gat=2;
+miss1txt.innerHTML="5";
+pos3.style.transform="scale(0)";
+pos3.style.transition="transform 0.2s linear";
+pos4.style.transform="scale(0)";
+pos4.style.transition="transform 0.2s linear";
+}
+
+if(tick==11||tick==15){
+matches++;
+gat=2;
+pos11.style.transform="scale(0)";
+pos11.style.transition="transform 0.2s linear";
+pos15.style.transform="scale(0)";
+pos15.style.transition="transform 0.2s linear";
+}
+if(tick==7||tick==8){
+dog=2;
+matches++;
+miss3txt.innerHTML="0";
+pos7.style.transform="scale(0)";
+pos7.style.transition="transform 0.2s linear";
+pos8.style.transform="scale(0)";
+pos8.style.transition="transform 0.2s linear";
+if(pos3.className!="addpos3"){
+pos3.classList.add("addpos3");
+atualmatch7=1;
+atualmatch8=1;
+
+}
+
+if(pos4.className!="addpos3"){
+pos4.classList.add("addpos3");
+atualmatch7=1;
+atualmatch8=1;
+}
+}
+if(tick==12){
+chicken++;
+matches++;
+miss2txt.innerHTML--;
+pos12.style.transform="scale(0)";
+pos12.style.transition="transform 0.2s linear";
+}
+
+if(tick==16||tick==16){
+urso++;
+matches++;
+pos16.style.transform="scale(0)";
+pos16.style.transition="transform  linear";
+}
+if(dog>1){
+miss3txt.innerHTML="0";
+}
+if(chicken>2){
+miss2txt.innerHTML="0";
+}
+if(gat>6){
+miss1txt.innerHTML="0";
+}
+if(gat>6&&chicken>2&&dog>1&&match12true==true&&match14true==true&&match13true==true&&match16true==true&&ismatch==false){
+matchwin.style.transform="scale(1)";
+
+setTimeout(()=>{
+shoot1.style.visibility="visible";
+if(shoot1.className!="addshoot1"){
+shoot1.classList.add("addshoot1");
+}
+},2000)
+setTimeout(()=>{
+shoot2.style.visibility="visible";
+if(shoot2.className!="addshoot2"){
+shoot2.classList.add("addshoot2");
+}
+},2500)
+setTimeout(()=>{
+shoot3.style.visibility="visible";
+if(shoot3.className!="addshoot3"){
+shoot3.classList.add("addshoot3");
+}
+},3000)
+setTimeout(()=>{
+shoot4.style.visibility="visible";
+if(shoot4.className!="addshoot4"){
+shoot4.classList.add("addshoot4");
+}
+},3500)
+setTimeout(()=>{
+shoot1.style.visibility="hidden";
+pos16.style.transform="scale(0)";
+},4000)
+setTimeout(()=>{
+shoot2.style.visibility="hidden";
+pos13.style.transform="scale(0)";
+},4500)
+setTimeout(()=>{
+shoot3.style.visibility="hidden";
+pos14.style.transform="scale(0)";
+},5000)
+setTimeout(()=>{
+shoot4.style.visibility="hidden";
+pos12.style.transform="scale(0)";
+},5500)
+}
+setTimeout(()=>{
+matchwin.style.transform="scale(0)";
+},6000)
+setTimeout(()=>{
+paneltrue();
+ismatch=true;
+shoot2.classList.remove("addshoot2");
+shoot1.classList.remove("addshoot1");
+shoot3.classList.remove("addshoot3");
+shoot4.classList.remove("addshoot4");
+gat=0;
+ dog=0;
+ chicken=0;
+ urso=0;
+ match12true=true;
+ match14true=true;
+ match16true=true;
+ match13true=true;
+ miss1txt.innerHTML="7";
+ miss2txt.innerHTML="3";
+ miss3txt.innerHTML="2";
+},8000)
+
+}
+function paneltrue(){
+panel.style.transform="scale(1)";
+}
+var coinsvar=0;
+var setcoins=coinsvar;
+var txtload=document.getElementById("load");
+function txtganhar(){
+coinsvar+=1500;
+panel.style.transform="scale(0)";
+txtload.style.visibility="visible";
+setTimeout(()=>{
+ gat=0;
+ dog=0;
+ chicken=0;
+ urso=0;
+ match12true=true;
+ match14true=true;
+ match16true=true;
+ match13true=true;
+ miss1txt.innerHTML="7";
+ miss2txt.innerHTML="3";
+ miss3txt.innerHTML="2";
+txtload.style.visibility="hidden";
+panel.style.transform="scale(0)";
+next.style.visibility="visible";
+cointxt.innerHTML=Math.round(coinsvar);
+window.location.href="ads.html";
+},4000)
+}
+match16true==true
+
+function isrewards(){
+cointxt.innerHTML=coinsvar;
+}
+</script>
+</body>
+</html></DOCTYPE>
